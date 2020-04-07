@@ -1,0 +1,43 @@
+:root {
+    --pomodoroColore: 10%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+.pomodoro {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;    
+    border:solid red 5px;
+    display:flex;
+    justify-content: center;
+    align-items: center ;
+    font-size: 50px;   
+    
+}
+
+#colorpomodoro {
+    transition: 0.4s;
+    position: absolute;   
+    width: var(--pomodoroColore);
+    height: var(--pomodoroColore);
+    border-radius: 50%;
+    background-color: red;
+    margin: auto;
+    z-index: -1;
+
+}
+
+#immaginePomodoro {
+    width:40px;
+    position: absolute;
+    top:-20px;
+
+}   
+
+

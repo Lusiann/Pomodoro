@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="pomodoro.css">
+</head>
+<body>
+    <div id="contenitore">Pomodoro
+        <div class="pomodoro""><img src="tomato.png" alt="pomodoro" id="immaginePomodoro"> 
+            <div id="testoPomodoro" >
+                <span contenteditable="true" class="testo minuti">25</span>
+                <span contenteditable="false">:</span>                    
+                <span contenteditable="true" class='testo secondi'>00</span>
+            </div>
+            <div id="colorpomodoro"></div> 
+        </div>
+        <button>reset</button>
+        <button id="pauseButton">pause</button>  
+        <button id="startButton">start</button>
+        <div id='pauseAt'>Hello</div>
+                     
+    </div>
+
+    <script src="pomodoro.js"></script>    
+</body>
+</html>
