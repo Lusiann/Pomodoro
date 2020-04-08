@@ -7,17 +7,24 @@ const testoSecondi = document.querySelector('.secondi')
 const testoMinuti = document.querySelector('.minuti')
 const bottoneStart = document.querySelector('#startButton')
 const bottonePausa = document.querySelector('#pauseButton')
+const bottoneReset = document.querySelector('#resetButton')
 let pausa = false;
+let timerIsGoing = false;
 let secondiPausa = 0;
+
 /* let provaPercentuale */
 
 function timer (seconds) {
-    pausa = false;
+    if(timerIsGoing) {
+        return;
+    }
+    pausa = false;    
     const now = Date.now()
     const then = now + seconds * 1000
     console.log((Date.now() - then) / 1000)
     displayTimeLeft(seconds)
-    displayPause(then)    
+    displayPause(then)
+    timerIsGoing = true;    
 
     countdown = setInterval(() => {
         const secondsLeft = Math.round((then - Date.now()) / 1000)
@@ -26,10 +33,12 @@ function timer (seconds) {
 
         if(secondsLeft < 0) {
             clearInterval(countdown)
+            timerIsGoing = false;
             return
         }
         if(pausa) {
-            clearInterval(countdown)            
+            clearInterval(countdown)
+            timerIsGoing = false;            
             return
         }
 
@@ -111,6 +120,13 @@ bottoneStart.addEventListener('click',function() {
 })
 
 bottonePausa.addEventListener('click', toggle)
+bottoneReset.addEventListener('click', function() {
+    inputSeconds = 1500    
+    testoMinuti.textContent = '25'
+    testoSecondi.textContent = '00'
+    pausa = true;
+
+})
 
 
 
