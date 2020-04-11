@@ -4,21 +4,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="pomodoro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="contenitore">Pomodoro
+    <h1>POMODORO TIMER</h1>       
+    <div id="contenitore">
         <div class="pomodoro""><img src="tomato.png" alt="pomodoro" id="immaginePomodoro"> 
             <div id="testoPomodoro" >
+               
                 <span contenteditable="true" class="testo minuti">25</span>
                 <span contenteditable="false">:</span>                    
                 <span contenteditable="true" class='testo secondi'>00</span>
+                
+                
             </div>
-            <div id="colorpomodoro"></div> 
+            <div id="colorpomodoro"></div>                        
         </div>
+        
+        
+        <div id="contenitoreBottoni">
+            <div id='pauseAt'>Hello</div>        
         <button id="resetButton">reset</button>
         <button id="pauseButton">toggle</button>  
         <button id="startButton">start</button>
-        <div id='pauseAt'>Hello</div>
+        </div>
+        
                      
     </div>
 

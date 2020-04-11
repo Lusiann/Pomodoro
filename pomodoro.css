@@ -1,25 +1,65 @@
 :root {
-    --pomodoroColore: 10%;
+    --pomodoroColore: 100%;
 }
 
 body {
     padding: 0;
     margin: 0;
+    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    display: grid;
+    font-family: Lobster;
+    
+    
+    
+    
 }
 
+h1 {
+    text-align: center;
+    color:  #142B40;
+    font-family: Lobster;
+    font-size: 70px;
+    
+}
+
+#contenitore {
+    border-radius: 6%;
+    justify-self: center;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    padding: 10px;    
+    border: solid 2px #142B40;
+    width: 30vw;
+    min-width: 400px;
+    box-shadow: 5px 9px 7px 0px rgba(0,0,0,0.67);  
+    
+    
+    
+    
+       
+
+}
 
 .pomodoro {
+    margin: auto;
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;    
-    border:solid red 5px;
+    border:solid black 1px;
     display:flex;
     justify-content: center;
     align-items: center ;
-    font-size: 50px;   
+    font-size: 50px;    
+    box-shadow: 5px 9px 7px 0px rgba(0,0,0,0.67);  
     
 }
+
+.pomodoro  span {
+    mix-blend-mode: difference;
+    color:rgb(176, 224, 153); }
 
 #colorpomodoro {
     transition: 0.4s;
@@ -27,17 +67,68 @@ body {
     width: var(--pomodoroColore);
     height: var(--pomodoroColore);
     border-radius: 50%;
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.863);
     margin: auto;
-    z-index: -1;
+    z-index: -1; 
 
 }
 
-#immaginePomodoro {
-    width:40px;
-    position: absolute;
-    top:-20px;
+/* #testoPomodoro{
+    
+} */
 
-}   
+#immaginePomodoro {
+    width:150px;
+    position: absolute;
+    top:-38px;
+    
+
+}
+
+#contenitoreBottoni {
+    margin-top: 30px;    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+#contenitoreBottoni button {
+    cursor: pointer;    
+    background-color: #47C77B;
+  border: none;
+  color: #142B40;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;  
+}
+
+#contenitoreBottoni button:hover, button:focus, button:active {
+    webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
+
+
+
+#pauseAt{    
+    color: #142B40;
+    font-size: 20px;
+    grid-column: 1/4;
+    border: #142B40 1px solid;
+    border-radius: 6%;
+    padding: 5px;
+    box-shadow: 5px 9px 7px 0px rgba(0,0,0,0.67);
+    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);  
+}
 
 

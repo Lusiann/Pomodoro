@@ -8,9 +8,10 @@ const testoMinuti = document.querySelector('.minuti')
 const bottoneStart = document.querySelector('#startButton')
 const bottonePausa = document.querySelector('#pauseButton')
 const bottoneReset = document.querySelector('#resetButton')
-let pausa = false;
+let pausa = true;
 let timerIsGoing = false;
 let secondiPausa = 0;
+let inputSeconds = 1500;
 
 /* let provaPercentuale */
 
@@ -28,12 +29,11 @@ function timer (seconds) {
 
     countdown = setInterval(() => {
         const secondsLeft = Math.round((then - Date.now()) / 1000)
-        secondiPausa = secondsLeft
-
-
+        
         if(secondsLeft < 0) {
             clearInterval(countdown)
             timerIsGoing = false;
+            document.title = 'Pomodoro Timer'            
             return
         }
         if(pausa) {
@@ -43,7 +43,9 @@ function timer (seconds) {
         }
 
         displayTimeLeft(secondsLeft)
-        colorPomodoro(seconds, secondsLeft)
+        colorPomodoro(seconds, secondsLeft)        
+        secondiPausa = secondsLeft
+        inputSeconds = secondsLeft
         
     },1000)
 
@@ -59,13 +61,13 @@ function colorPomodoro(tempoCompleto, tempoRimanente ) {
 
 function displayTimeLeft(seconds) {
     const minutes = Math.floor(seconds / 60)
-    const secondiRimanenti = seconds % 60
-    /* const display = `${minutes}:${secondiRimanenti < 10 ? '0' : '' }${secondiRimanenti}`
-    testoPomodoro.firstChild.data = display;
-    document.title = display; */
+    const secondiRimanenti = seconds % 60    
     testoMinuti.textContent = minutes;
-    testoSecondi.textContent = `${secondiRimanenti < 10 ? '0' : '' }${secondiRimanenti}`;
-    console.log(minutes, secondiRimanenti)
+    testoSecondi.textContent = `${secondiRimanenti < 10 ? '0' : ' ' }${secondiRimanenti}`;
+    //per display on title bar
+    const display = `${minutes}:${secondiRimanenti < 10 ? '0' : ' ' }${secondiRimanenti}`
+    document.title = display;
+    
 }
 
 
@@ -73,19 +75,23 @@ function displayPause(then) {
     const fine = new Date(then)
     const ore = fine.getHours()
     const minuti = fine.getMinutes()
-    displayEndTime.textContent = `Pause at ${ore}:${minuti}`
-
+    displayEndTime.textContent = `Pause at ${ore}:${minuti < 10 ? '0' : ' ' }${minuti}`
 
 }
 
 function toggle() {
-    if(pausa) {
-        timer(secondiPausa)
-        secondiPausa = 0;
-    } else if (!pausa && secondiPausa > 0) {
-        pausa = true;
-        displayEndTime.textContent = 'Pomodoro Paused'
+    if(pausa && secondiPausa === 0) {
+        timer(inputSeconds)
+        return;
     }
+    if(pausa) {       
+            timer(secondiPausa)
+            
+        } else {
+            pausa = true;
+            displayEndTime.textContent = 'Pomodoro Paused'
+        }
+        
 }
 
 /* if (isNaN(String.fromCharCode(e.which))) e.preventDefault();
@@ -105,28 +111,37 @@ testo.forEach((text) => {
     })
 })
 
-let inputSeconds = 1500
+
 testoPomodoro.addEventListener('input',function(e) {
-    
-    let minutes = testoMinuti.textContent
+
+    let minutes = parseInt(testoMinuti.textContent)
     let seconds = parseInt(testoSecondi.textContent) 
     let minutesToSeconds = minutes * 60
     inputSeconds = minutesToSeconds + (seconds ? seconds : 0)
-    console.log(inputSeconds)
+    
 })
+
 
 bottoneStart.addEventListener('click',function() {
     timer(inputSeconds)
+    
 })
 
 bottonePausa.addEventListener('click', toggle)
 bottoneReset.addEventListener('click', function() {
+    
     inputSeconds = 1500    
     testoMinuti.textContent = '25'
     testoSecondi.textContent = '00'
     pausa = true;
+    document.documentElement.style.setProperty('--pomodoroColore', '100%')
+    displayEndTime.textContent = 'Hello'
+    secondiPausa = 0;
+    document.title = 'Pomodoro Timer'
 
 })
+
+
 
 
 
